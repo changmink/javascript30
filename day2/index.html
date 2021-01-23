@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="clock">
+       <div class="clock-face">
+           <div class="hand hour-hand"></div>
+           <div class="hand min-hand"></div>
+           <div class="hand second-hand"></div>
+       </div>
+   </div> 
+</body>
+<style>
+    .clock-face {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 10px solid black;
+        border-radius: 100%
+    }
+    .hand {
+        width: 50%;
+        height: 6px;
+        background: black;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all 0.5s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+</style>
+<script>
+    const hour = document.querySelector(".hour-hand")
+    const min = document.querySelector(".min-hand")
+    const second = document.querySelector(".second-hand")
+    let s = 0
+    let m = 0
+    let h = 0
+    setInterval(() => {
+        let d = new Date();
+        s = d.getSeconds()
+        m = d.getMinutes()
+        h = d.getHours()
+        console.log(s, m, h)
+        hour.style.transform = `rotate(${30 * h + 90}deg)`
+        min.style.transform = `rotate(${6 * m + 90}deg)`
+        second.style.transform = `rotate(${6 * s + 90}deg)`
+    }, 1000);
+</script>
+</html>
